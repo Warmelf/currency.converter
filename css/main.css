@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Roboto'; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu_wrapper {  
+    background-color: #F5F5F6;
+    margin-bottom: 63px;
+}
+
+.menu_container {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.logo {
+    width: 89px;
+    height: 23px;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu_item {
+    display: flex;
+    display: inline-block;
+}
+
+.menu_item:hover .menu_link{
+    color: #000;
+}
+
+.menu_link {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0 20px;
+    text-transform: uppercase;
+    color: #959BA4;
+    font: 500 11px/12.89px 'Roboto';
+}
+
+.menu_button {
+    background: #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    border: none;
+    width: 58px;
+    height: 33px;
+    font: 500 11px/12.89px 'Roboto';
+    cursor: pointer;
+}
+
+.main_content {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 36px;
+}
+
+.currency_wrapper {
+    display: flex;
+}
+
+.subtitle {
+    color: #9F9F9F;
+    font: 400 12px 'Roboto';
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.currency_list {
+    letter-spacing: -.36em;
+    margin-bottom: 20px;
+}
+
+.currency_item {
+    color: #C6C6C6;
+    font: 400 12px 'Roboto';
+    display: inline-block;
+    width: 50px;
+    padding: 10px 0;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    border-right: 1px solid #E5E5E5;
+    letter-spacing: normal;
+    margin: 0;
+    padding-right: 0;
+    text-align: center;
+    cursor: pointer;   
+}
+
+.currency_select {
+    color: #C6C6C6;
+    font: 400 12px 'Roboto';
+    border: none;
+    box-sizing: border-box;
+}
+
+.currency_item_last {
+    padding: 0;   
+    border-radius: 0 3px 3px 0;
+}
+
+.currency_item_first {
+    border-left: 1px solid #E5E5E5;
+    border-radius: 3px 0 0 3px;
+}
+
+.excange_input_container {
+    border: 1px #E5E5E5 solid;
+    border-radius: 3px;
+    width: 259px;
+    padding: 17px 0 14px 20px;
+    box-sizing: border-box;
+}
+
+.exchange_input {
+    font: 700 36px 'Roboto';
+    width: 87%;
+    border: none;
+    margin-bottom: 33px;
+}
+
+.exchange_input:focus {
+    outline: none;
+    border: 0;
+}
+
+.exchange_value {
+    color: #C6C6C6;
+    font: 400 12px 'Roboto';
+    margin-bottom: 13px;
+}
+
+.convert_button {
+    margin: 115px 42px 0;
+}
+
+.convert_img {
+    cursor: pointer;
+}
+
+.currency_selected {
+    color: #fff;
+    background: #833AE0;
+}
+
+.warning {
+    text-align: center;
+}
+
+/** Стили для модального окна ==================================================*/
+
+.popup {
+    position: fixed;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+}
+
+.popup.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup_body.open {
+    visibility: visible;
+}
+
+.popup_body {
+    position: fixed;
+    z-index: 11;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.popup_content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    max-width: 250px;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+.popup_close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 0 10px 20px 20px;
+  cursor: pointer;
+}
+
+.popup_content_loading {
+    max-width: 70px;
+}

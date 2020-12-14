@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header class="menu_wrapper">
+        <div class="menu_container">
+            <img src="images/logo.png" alt="" class="logo">
+            <ul class="menu">
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Банк</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Бизнес</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Инвестиции</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Страхование</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Мобайл</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Путешествия</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Развлечения</a>
+                </li>
+            </ul>
+            <button class="menu_button">Войти</button>
+        </div>
+    </header>
+    <main class="main_content">
+        <h1 class="title">Конвертер валют онлайн</h1>
+        <div class="currency_wrapper">
+            <div class="exchage_block">
+                <h2 class="subtitle">У меня есть</h2>
+                <div class="currency_list" id="currency_list_from">
+                    <span class="currency_item currency_item_button currency_item_first">RUB</span>
+                    <span class="currency_item currency_item_button currency_selected">USD</span>
+                    <span class="currency_item currency_item_button">EUR</span>
+                    <span class="currency_item currency_item_button">GBP</span>
+                    <span class="currency_item currency_item_last">
+                        <select class="currency_item currency_select" id="selectCurFrom">
+                            <option value="BYR">BYR</option>
+                        </select>
+                    </span>
+                </div>   
+                <div class="excange_input_container">
+                    <input type="number" value="1" class="exchange_input">  
+                    <p class="exchange_value" id="exchangeValueFrom"></p>        
+                </div>
+            </div>
+            <div class="convert_button">
+                <img src="images/convert_img.png" alt="Нажмите для обратной конвертации" class="convert_img">
+            </div>
+            <div class="exchage_block">
+                <h2 class="subtitle">Хочу приобрести</h2>
+                <div class="currency_list" id="currency_list_to">
+                    <span class="currency_item currency_item_button currency_selected currency_item_first">RUB</span>
+                    <span class="currency_item currency_item_button">USD</span>
+                    <span class="currency_item currency_item_button">EUR</span>
+                    <span class="currency_item currency_item_button">GBP</span>
+                    <span class="currency_item currency_item_last">
+                        <select class="currency_item currency_select" id="selectCurTo">
+                            <option value="">BYR</option>
+                        </select>
+                    </span>
+                </div>   
+                <div class="excange_input_container">
+                    <input type="number" value="" class="exchange_input" id="outputValue">  
+                    <p class="exchange_value" id="exchangeValueTo"></p>        
+                </div>
+            </div>
+        </div>
+        <p class="warning"></p>
+    </main>
+    <div id="popupWindowWrong" class="popup"></div>
+    <div id="popupBodyWrong" class="popup_body">
+        <div class="popup_content">
+            <div class="popup_close">X</div>
+            <span>Упс! Что-то пошло не так...</span>
+        </div>
+    </div>   
+    <div id="popupWindowLoading" class="popup"></div>
+    <div id="popupBodyLoading" class="popup_body">
+        <div class="popup_content popup_content_loading">
+        <span>Loading...</span>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
