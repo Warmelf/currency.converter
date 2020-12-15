@@ -47,37 +47,42 @@ function popupWindowWrongClose() {
     popupBodyWrong.classList.remove('open'); 
 }
 
-async function getRates() {
-    // if (!isResolve) {
-    //     popupWindowWrong.classList.add('open');
-    //     popupBodyWrong.classList.add('open');
+function popupWindowWrongAdd() {
+    popupWindowWrong.classList.add('open');
+    popupBodyWrong.classList.add('open');
 
-    //     closePopupWrong.addEventListener('click', (e) => {
-    //         e.preventDefault();
-    //         popupWindowWrongClose();
-    //     });
-        
-    //     popupBodyWrong.addEventListener('click', (e) => {   
-    //         let idPopup = e.target.getAttribute('id');   
-    //         if (idPopup == 'popupBodyWrong') {
-    //             popupWindowWrongClose();             
-    //         }       
-    //     });
-        
-    //     document.addEventListener('keyup', (e) => {
-    //         if (e.key === "Escape") {
-    //             popupWindowWrongClose();
-    //         }
-    //     });
-    // }
+    closePopupWrong.addEventListener('click', (e) => {
+        e.preventDefault();
+        popupWindowWrongClose();
+    });
+    
+    popupBodyWrong.addEventListener('click', (e) => {   
+        let idPopup = e.target.getAttribute('id');   
+        if (idPopup == 'popupBodyWrong') {
+            popupWindowWrongClose();             
+        }       
+    });
+    
+    document.addEventListener('keyup', (e) => {
+        if (e.key === "Escape") {
+            popupWindowWrongClose();
+        }
+    });
+}
+
+async function getRates() {
     modalLoading();
 
     rates = {};
-    const res = await fetch(`https://api.ratesapi.io/api/latest?base=${currency1}&symbols=${currency2}`);
+    try {const res = await fetch(`https://api.ratesapi.io/api/latest?base=${currency1}&symbols=${currency2}`);
     const data = await res.json();
     popupWindowLoadingClose();
     rates[currency2] = data.rates[currency2];
     rates[currency1] = 1 / data.rates[currency2];
+    } catch(er) {
+        popupWindowLoadingClose();
+        popupWindowWrongAdd();    
+    }    
 }
 
 function calculateValue1() {
@@ -242,277 +247,6 @@ getRates().then(() => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-// let option;
-// let obj = [];
-// var currencyFrom = 'USD';
-// var currencyTo = 'RUB';
-
-
-
-
-
-
-
-
-
-
-// getBaseValueFrom(exchangeValueFrom);
-// getBaseValueTo(exchangeValueTo);
-// currOfSelectFrom(selectCurFrom);
-// currOfSelectTo(selectCurTo);
-
-// input.addEventListener('input', () => {
-//     getBaseValueFrom(exchangeValueFrom);
-//     getBaseValueTo(exchangeValueTo);
-//     convert();
-//     currOfSelectFrom(selectCurFrom);
-//     currOfSelectTo(selectCurTo);
-// });
-
-// outputValue.addEventListener('input', () => {
-//     let otherCur = currencyTo;
-//     currencyTo = currencyFrom;
-//     currencyFrom = otherCur;
-
-//     let otherInput = outputValue
-//     outputValue = input;
-//     input = otherInput;
-
-//     let otherCurList = currListToChildren;
-//     currListToChildren = currListFromChildren;
-//     currListFromChildren = otherCurList;
-
-//     let otherSelect = selectCurTo;
-//     selectCurTo = selectCurFrom;
-//     selectCurFrom = otherSelect;
-
-//     getBaseValueFrom(exchangeValueFrom);
-//     getBaseValueTo(exchangeValueTo);
-//     convert();
-//     currOfSelectFrom(selectCurFrom);
-//     currOfSelectTo(selectCurTo);
-//     console.log('меняю аутпут');
-// });
-
-// outputValue.addEventListener('blur', () => { 
-//     console.log('нет фокуса');
-//     let otherCur2 = currencyTo;
-//     currencyTo = currencyFrom;
-//     currencyFrom = otherCur2;
-
-//     let otherInput2 = outputValue
-//     outputValue = input;
-//     input = otherInput2;
-
-//     let otherCurList2 = currListToChildren;
-//     currListToChildren = currListFromChildren;
-//     currListFromChildren = otherCurList2;
-
-//     let otherSelect2 = selectCurTo;
-//     selectCurTo = selectCurFrom;
-//     selectCurFrom = otherSelect2;
-// });
-
-
-
-// currListFromChildren.forEach(el => {
-//     el.addEventListener('click', () => {
-//         currListFromChildren.forEach(elem => {
-//             elem.classList.remove('currency_selected');
-//         });
-//         selectCurFrom.classList.remove('currency_selected');
-//         el.classList.add('currency_selected');
-//         currencyFrom = el.innerHTML;
-//         getBaseValueFrom(exchangeValueFrom);
-//         getBaseValueTo(exchangeValueTo);
-//         convert();
-//     });
-// })
-
-// currListToChildren.forEach(el => {
-//     el.addEventListener('click', () => {
-//         currListToChildren.forEach(elem => {
-//             elem.classList.remove('currency_selected');
-//         });
-//         selectCurTo.classList.remove('currency_selected');
-//         el.classList.add('currency_selected');
-//         currencyTo = el.innerHTML;
-//         getBaseValueFrom(exchangeValueFrom);
-//         getBaseValueTo(exchangeValueTo);
-//         convert();
-//     });
-// })
-
-// function getRates(currFrom, currTo) {
-//     modalLoading();
-//     if (currencyFrom == currencyTo) {       
-//         warning.innerHTML = 'Пожалуйста, выберите разные наименования валют для конвертации.';
-//         main.appendChild(warning);
-//     }
-//     return fetch(`https://api.ratesapi.io/api/latest?base=${currFrom}&symbols=${currTo}`).then(rates => {
-//             popupWindowLoading.classList.remove('open');
-//             popupBodyLoading.classList.remove('open');
-            
-//             popupBodyLoading.addEventListener('click', (e) => {   
-//                 let idPopup = e.target.getAttribute('id');   
-//                 if (idPopup == 'popupBodyLoading') {
-//                     popupWindowLoading.classList.remove('open');
-//                     popupBodyLoading.classList.remove('open');              
-//                 }       
-//             });
-
-//             document.addEventListener('keyup', (e) => {
-//                 if (e.key === "Escape") {
-//                     popupWindowLoading.classList.remove('open');
-//                     popupBodyLoading.classList.remove('open');
-//                 }
-//             });
-
-//             return rates.json()
-//         })
-//         .catch((err) => {
-//             console.log(err);
-
-//             popupWindowWrong.classList.add('open');
-//             popupBodyWrong.classList.add('open');
-
-//             closePopupWrong.addEventListener('click', (e) => {
-//                 e.preventDefault();
-//                 popupWindowWrong.classList.remove('open');
-//                 popupBodyWrong.classList.remove('open');
-//             });
-            
-//             popupBodyWrong.addEventListener('click', (e) => {   
-//                 let idPopup = e.target.getAttribute('id');   
-//                 if (idPopup == 'popupBodyWrong') {
-//                     popupWindowWrong.classList.remove('open');
-//                     popupBodyWrong.classList.remove('open');              
-//                 }       
-//             });
-            
-//             document.addEventListener('keyup', (e) => {
-//                 if (e.key === "Escape") {
-//                     popupWindowWrong.classList.remove('open');
-//                     popupBodyWrong.classList.remove('open');
-//                 }
-//             });
-//         })
-// };
-
-// function convert() {
-//     warning.remove();
-//     getRates(currencyFrom, currencyTo).then((res) => {
-//         let curVal = res.rates[currencyTo];
-//         let amount = Number(input.value);
-//         outputValue.value = amount * curVal;
-//         return outputValue.value;
-//     })
-// };
-
-
-// function timeout(ms, promise) {
-//     return new Promise(function(resolve, reject) {
-//         setTimeout(function() {
-//         reject(new Error("timeout"))
-//         }, ms)
-//         promise.then(resolve, reject)
-//     })
-// };
-
-// function modalLoading() {
-//     timeout(500, fetch(`https://api.ratesapi.io/api/latest?base=${currencyFrom}&symbols=${currencyTo}`)).then(function(response) {
-//     }).catch(function(error) {
-//         popupWindowLoading.classList.add('open');
-//         popupBodyLoading.classList.add('open');
-//     });
-// };
-
-// function getBaseValueFrom(str) {
-//     getRates(currencyFrom, currencyTo).then((res) => {
-//         str.innerHTML = `1 ${currencyFrom} = ${res.rates[currencyTo]} ${currencyTo}`;
-//     });
-// };
-
-// function getBaseValueTo(str) {
-//     getRates(currencyTo, currencyFrom).then((res) => {
-//         str.innerHTML = `1 ${currencyTo} = ${res.rates[currencyFrom]} ${currencyFrom}`;
-//     });
-// };
-
-
-// function currOfSelectFrom(select) {
-//     select.addEventListener('change', (event) => {
-//         currencyFrom = event.target.value;
-//         currListFromChildren.forEach(el => {  
-//             el.classList.remove('currency_selected');
-//         });
-//         event.target.classList.add('currency_selected');
-//         getBaseValueFrom(exchangeValueFrom);
-//         getBaseValueTo(exchangeValueTo);
-//         convert();
-//     });
-// };
-
-// function currOfSelectTo(select) {
-//     select.addEventListener('change', (event) => {
-//         currencyTo = event.target.value;
-//         currListToChildren.forEach(el => {  
-//             el.classList.remove('currency_selected');
-//         });
-//         event.target.classList.add('currency_selected');
-//         getBaseValueFrom(exchangeValueFrom);
-//         getBaseValueTo(exchangeValueTo);
-//         convert();
-//     });
-// };
-
-
-// invertButton.addEventListener('click', () => {
-//     let tempCur = currencyFrom;
-//     currencyFrom = currencyTo;
-//     currencyTo = tempCur;
-//     convert();
-//     getBaseValueFrom(exchangeValueFrom);
-//     getBaseValueTo(exchangeValueTo);
-//     currListFromChildren.forEach(el => {
-//         el.classList.remove('currency_selected');
-//         if (el.innerHTML == currencyFrom) {
-//             el.classList.add('currency_selected');
-//         }
-//     });
-//     selectCurFrom.classList.remove('currency_selected');
-//     [...selectCurFrom.children].forEach(el => {
-//         if (el.innerHTML == currencyFrom) {
-//             el.parentElement.classList.add('currency_selected');
-//             el.parentElement.value = currencyFrom;
-//         }
-//     })
-//     currListToChildren.forEach(el => {
-//         el.classList.remove('currency_selected');
-//         if (el.innerHTML == currencyTo) {
-//             el.classList.add('currency_selected');
-//         }
-//     });
-//     selectCurTo.classList.remove('currency_selected');
-//     [...selectCurTo.children].forEach(el => {
-//         if (el.innerHTML == currencyTo) {
-//             el.parentElement.classList.add('currency_selected');
-//             el.parentElement.value = currencyTo;
-//         }
-//     })
-// });
-
-
 const getInformation = async () => {
     const select = document.querySelectorAll('.currency_select');
 
@@ -530,12 +264,7 @@ const getInformation = async () => {
             elem.appendChild(option);
             option.setAttribute('value', el);
         });                   
-    });
-    // currOfSelectFrom(selectCurFrom);
-    // currOfSelectTo(selectCurTo);
-    // getBaseValueFrom(exchangeValueFrom);
-    // getBaseValueTo(exchangeValueTo);        
-    // convert();       
+    });     
 };
 
 getInformation();
